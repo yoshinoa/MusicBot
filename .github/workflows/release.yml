@@ -22,12 +22,15 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots clean package
-
       - name: Get short commit SHA
         id: sha
         run: echo "short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Set Maven version to commit hash
+        run: mvn versions:set -DnewVersion=build-${{ steps.sha.outputs.short }} -DgenerateBackupPoms=false
+
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots clean package
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
