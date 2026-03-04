@@ -15,6 +15,9 @@ A cross-platform Discord music bot with a clean interface, and that is easy to s
 
 [![Setup](http://i.imgur.com/VvXYp5j.png)](https://jmusicbot.com/setup)
 
+> [!IMPORTANT]
+> **Java 25 is required.** Discord now enforces the DAVE E2EE voice encryption protocol. This build includes support for it via [JDAVE](https://github.com/MinnDevelopment/jdave), which requires Java 25+.
+
 ## Features
   * Easy to run (just make sure Java is installed, and run!)
   * Fast loading of songs
