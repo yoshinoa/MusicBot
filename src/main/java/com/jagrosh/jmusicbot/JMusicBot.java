@@ -32,10 +32,12 @@ import java.awt.Color;
 import java.util.Arrays;
 import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.*;
+import net.dv8tion.jda.api.audio.AudioModuleConfig;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.dv8tion.jda.api.exceptions.ErrorResponseException;
+import club.minnced.discord.jdave.interop.JDaveSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
@@ -121,10 +123,12 @@ public class JMusicBot
                     .enableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE)
                     .disableCache(CacheFlag.ACTIVITY, CacheFlag.CLIENT_STATUS, CacheFlag.EMOJI, CacheFlag.ONLINE_STATUS)
                     .setActivity(config.isGameNone() ? null : Activity.playing("loading..."))
-                    .setStatus(config.getStatus()==OnlineStatus.INVISIBLE || config.getStatus()==OnlineStatus.OFFLINE 
+                    .setStatus(config.getStatus()==OnlineStatus.INVISIBLE || config.getStatus()==OnlineStatus.OFFLINE
                             ? OnlineStatus.INVISIBLE : OnlineStatus.DO_NOT_DISTURB)
                     .addEventListeners(client, waiter, new Listener(bot))
                     .setBulkDeleteSplittingEnabled(true)
+                    .setAudioModuleConfig(new AudioModuleConfig()
+                            .withDaveSessionFactory(new JDaveSessionFactory()))
                     .build();
             bot.setJDA(jda);
 

@@ -171,7 +171,7 @@ public class AudioHandler extends AudioEventAdapter implements AudioSendHandler
     
     // Audio Events
     @Override
-    public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) 
+    public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason)
     {
         RepeatMode repeatMode = manager.getBot().getSettingsManager().getSettings(guildId).getRepeatMode();
         // if the track ended normally, and we're in repeat mode, re-add it to the queue
